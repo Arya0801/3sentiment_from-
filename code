@@ -1,0 +1,43 @@
+import nltk
+from nltk.corpus import stopwords
+from nltk.tokenize import word_tokenize
+from textblob import TextBlob
+
+# Download necessary NLTK data
+nltk.download('punkt')
+nltk.download('stopwords')
+
+# Function to clean and preprocess text
+def preprocess_text(text):
+    stop_words = set(stopwords.words('english'))
+    word_tokens = word_tokenize(text)
+    filtered_text = [word for word in word_tokens if word.lower() not in stop_words]
+    return ' '.join(filtered_text)
+
+# Function to analyze mood
+def analyze_mood(text):
+    processed_text = preprocess_text(text)
+    blob = TextBlob(processed_text)
+    sentiment = blob.sentiment
+
+    # Determine mood based on polarity
+    if sentiment.polarity > 0.1:
+        mood = "Positive"
+    elif sentiment.polarity < -0.1:
+        mood = "Negative"
+    else:
+        mood = "Neutral"
+    
+    return mood
+
+# Main functionpython
+def main():
+    print("Mood Analyzer")
+    print("Enter your text below:")
+    user_input = input()
+    
+    mood = analyze_mood(user_input)
+    print(f"The mood of the text is: {mood}")
+
+if __name__ == "__main__":
+    main()

@@ -1,0 +1,5 @@
+def preprocess_text(text):
+    stop_words = set(stopwords.words('english'))
+    word_tokens = word_tokenize(text)
+    filtered_text = [word for word in word_tokens if word.lower() not in stop_words]
+    return ' '.join(filtered_text)

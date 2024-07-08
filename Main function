@@ -1,0 +1,10 @@
+def main():
+    print("Mood Analyzer")
+    print("Enter your text below:")
+    user_input = input()
+    
+    mood = analyze_mood(user_input)
+    print(f"The mood of the text is: {mood}")
+
+if __name__ == "__main__":
+    main()
